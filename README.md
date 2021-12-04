@@ -37,7 +37,9 @@
 
 <h2>Описание API-методов</h2>
 
-Для удобной навигации по REST-API методам был сконфигурирован Swagger, перейти к нему можно по адресу: https://localhost:5001/swagger/index.html
+Для удобной навигации по REST-API методам был сконфигурирован Swagger, перейти к нему можно по адресу: 
+- http://localhost:5000/swagger/index.html
+- https://localhost:5001/swagger/index.html
 <br></br>
 
 1) <code>https://localhost:5001/api/GameInfo/get</code>
