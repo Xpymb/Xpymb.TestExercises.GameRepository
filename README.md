@@ -10,6 +10,7 @@
 Использовано:
 - .NET Core 3.1
 - Entity Framework
+- SQLite Database
 - Swagger
 - AutoMapper
 
@@ -52,11 +53,12 @@
 - https://localhost:5001/swagger/index.html
 <br></br>
 
-1) <code>https://localhost:5001/api/GameInfo/get</code>
+<h3>1) Получить информацию об игре по id игры</h3>
+
+Адрес: <code>https://localhost:5001/api/GameInfo/get</code>
+
 
 Тип метода: GET
-
-Описание: позволяет получить информацию об игре по id игры в базе данных
 
 <table>
     <tr>Параметры запроса:</tr>
@@ -103,11 +105,12 @@ https://localhost:5001/api/GameInfo/get?id=d86226ac-9551-497b-b2f9-750651b15ab6
 </table>
 <br></br>
 
-2) <code>https://localhost:5001/api/GameInfo/get-by-game-tag</code>
+<h3>2) Получить информацию об играх по определенному жанру</h3>
+
+Адрес: <code>https://localhost:5001/api/GameInfo/get-by-game-tag</code>
+
 
 Тип метода: GET
-
-Описание: позволяет получить информацию об играх по указанному жанру
 
 <table>
     <tr>Параметры запроса:</tr>
@@ -167,11 +170,12 @@ https://localhost:5001/api/GameInfo/get-by-game-tag?gameTag=1
 </table>
 <br></br>
 
-3) <code>https://localhost:5001/api/GameInfo/get-all</code>
+<h3>3) Получить информацию обо всех играх в базе данных</h3>
+
+Адрес: https://localhost:5001/api/GameInfo/get-all
+
 
 Тип метода: GET
-
-Описание: позволяет получить информацию всех играх в базе данных
 
 Пример запроса:
 
@@ -229,11 +233,12 @@ https://localhost:5001/api/GameInfo/get-all
 </table>
 <br></br>
 
-4) <code>https://localhost:5001/api/GameInfo/create</code>
+<h3>4) Создать новую запись с информацией об игре в базе данных</h3>
+
+Адрес: <code>https://localhost:5001/api/GameInfo/create</code>
+
 
 Тип метода: PUT
-
-Описание: позволяет создать новую запись с информацией о игре в базе данных
 
 <table>
     <tr>Тело запроса:</tr>
@@ -296,11 +301,12 @@ https://localhost:5001/api/GameInfo/create
 </table>
 <br></br>
 
-5) <code>https://localhost:5001/api/GameInfo/update</code>
+<h3>5) Изменить информацию об игре в базе данных</h3>
+
+Адрес: <code>https://localhost:5001/api/GameInfo/update</code>
+
 
 Тип метода: POST
-
-Описание: позволяет изменить информацию о игре в базе данных
 
 <table>
     <tr>Тело запроса:</tr>
@@ -402,11 +408,12 @@ https://localhost:5001/api/GameInfo/update
 
 <br></br>
 
-6) <code>https://localhost:5001/api/GameInfo/update</code>
+<h3>6) Удалить информацию об игре из базы данных</h3>
+
+Адрес: <code>https://localhost:5001/api/GameInfo/update</code>
+
 
 Тип метода: DELETE
-
-Описание: позволяет изменить информацию о игре в базе данных
 
 <table>
     <tr>Параметры запроса:</tr>
