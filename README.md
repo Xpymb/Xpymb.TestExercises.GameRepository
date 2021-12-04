@@ -1,6 +1,6 @@
 # Xpymb.TestExercises.GameRepository
 
-<h2>Немного про решение</h2>
+<h2>Описание</h2>
 Было 
 
 <h2>Как запустить?</h2>
