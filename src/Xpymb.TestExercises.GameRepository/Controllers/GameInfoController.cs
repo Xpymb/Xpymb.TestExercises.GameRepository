@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,7 @@ namespace Xpymb.TestExercises.GameRepository.Controllers
         }
         
         [HttpGet("get-by-game-tag")]
-        public async Task<IActionResult> GetByGameTags(GameTagType gameTag)
+        public async Task<IActionResult> GetByGameTags([Required]GameTagType gameTag)
         {
             var result = await _gameInfoService.GetManyAsync(e => e.GameTags.Contains(gameTag.ToString()));
 
@@ -78,6 +79,11 @@ namespace Xpymb.TestExercises.GameRepository.Controllers
             {
                 return ValidationProblem();
             }
+            if (model.Id == Guid.Empty)
+            {
+                ModelState.AddModelError("Id", "Must not be null");
+                return ValidationProblem();
+            }
             
             var result = await _gameInfoService.UpdateAsync(model);
 
@@ -90,10 +96,20 @@ namespace Xpymb.TestExercises.GameRepository.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete([Required]Guid id)
         {
+            if (!ModelState.IsValid)
+            {
+                return ValidationProblem();
+            }
+
             var result = await _gameInfoService.DeleteAsync(id);
 
+            if (result is null)
+            {
+                return NotFound($"Record with id = \"{ id }\" not found");
+            }
+            
             return Ok(result);
         }
     }
