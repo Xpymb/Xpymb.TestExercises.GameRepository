@@ -13,6 +13,8 @@ namespace Xpymb.TestExercises.GameRepository.Data
         IEnumerable<T> GetAll<T>() where T : class, IEntity;
 
         Task<T> AddAsync<T>(T entity) where T : class, IEntity;
+        
+        Task<T> UpdateAsync<T>(T entity) where T : class, IEntity;
 
         Task<T> DeleteAsync<T>(Guid entityId) where T : class, IEntity;
 

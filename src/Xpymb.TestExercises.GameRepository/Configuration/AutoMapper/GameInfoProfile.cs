@@ -12,8 +12,7 @@ namespace Xpymb.TestExercises.GameRepository.Configuration.AutoMapper
                 .ForMember(
                     dest => dest.GameTags, 
                     opt => 
-                        opt.MapFrom(
-                            src => src.GameTags.ToEnumCollection<GameTagType>()));
+                        opt.MapFrom(src => src.GameTags.ToEnumCollection<GameTagType>()));
             CreateMap<GameInfoModel, GameInfoEntity>()
                 .ForMember(
                     dest => dest.GameTags, 

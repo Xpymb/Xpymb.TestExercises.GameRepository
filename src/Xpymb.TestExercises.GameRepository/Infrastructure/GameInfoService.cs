@@ -71,23 +71,27 @@ namespace Xpymb.TestExercises.GameRepository.Infrastructure
 
         public async Task<GameInfoModel> UpdateAsync(UpdateGameInfoModel model)
         {
+            var baseModel = _mapper.Map<GameInfoModel>(model);
+            
             var entity = await Task.Run(() =>
-                _dbRepository.Get<GameInfoEntity>(entity => entity.Id == model.Id).FirstOrDefaultAsync());
+                    _dbRepository.Get<GameInfoEntity>(entity => entity.Id == model.Id).AsNoTracking().FirstOrDefaultAsync());
 
             if (entity is null)
             {
                 return null;
             }
-
-            entity.Name = model.Name ?? entity.Name;
-            entity.GameStudio = model.GameStudio ?? entity.GameStudio;
-            entity.GameTags = model.GameTags.Any() ? model.GameTags.EnumCollectionToString() : entity.GameTags;
+            
+            entity.Name = baseModel.Name ?? entity.Name;
+            entity.GameStudio = baseModel.GameStudio ?? entity.GameStudio;
+            entity.GameTags = baseModel.GameTags.Any() ? baseModel.GameTags.EnumCollectionToString() : entity.GameTags;
             entity.IsActive = model.IsActive ?? entity.IsActive;
             entity.DateUpdated = DateTime.Now;
-
+           
+            var result = await _dbRepository.UpdateAsync(entity);
+            
             await _dbRepository.SaveChangesAsync();
 
-            var resultModel = _mapper.Map<GameInfoModel>(entity);
+            var resultModel = _mapper.Map<GameInfoModel>(result);
             return resultModel;
         }
 

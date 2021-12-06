@@ -37,6 +37,13 @@ namespace Xpymb.TestExercises.GameRepository.Data
             return result.Entity;
         }
 
+        public async Task<T> UpdateAsync<T>(T entity) where T : class, IEntity
+        {
+            var result = await Task.Run(() => _context.Set<T>().Update(entity).Entity);
+
+            return result;
+        }
+
         public async Task<T> DeleteAsync<T>(Guid entityId) where T : class, IEntity
         {
             var entity = await Task.Run(() => 
