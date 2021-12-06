@@ -21,7 +21,7 @@ namespace Xpymb.TestExercises.GameRepository.Controllers
         }
 
         [HttpGet("get")]
-        public async Task<IActionResult> Get(Guid id)
+        public async Task<IActionResult> Get([Required] Guid id)
         {
             var result = await _gameInfoService.GetAsync(e => e.Id == id);
 
@@ -34,7 +34,7 @@ namespace Xpymb.TestExercises.GameRepository.Controllers
         }
         
         [HttpGet("get-by-game-tag")]
-        public async Task<IActionResult> GetByGameTags([Required]GameTagType gameTag)
+        public async Task<IActionResult> GetByGameTags([Required] GameTagType gameTag)
         {
             var result = await _gameInfoService.GetManyAsync(e => e.GameTags.Contains(gameTag.ToString()));
 
@@ -96,7 +96,7 @@ namespace Xpymb.TestExercises.GameRepository.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete([Required]Guid id)
+        public async Task<IActionResult> Delete([Required] Guid id)
         {
             if (!ModelState.IsValid)
             {
