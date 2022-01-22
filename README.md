@@ -274,6 +274,36 @@ https://localhost:5001/api/GameInfo/info
         0
       ]
     }
+    
+Пример ответа:
+
+     {
+       "id": "63a87236-dc81-478a-807c-33eb2c30dbcc",
+       "name": "New World",
+       "gameStudio": "Amazon Game Studios",
+       "gameTags": [
+         0
+       ]
+     }
+
+ <table>
+     <tr>Параметры ответа:</tr>
+     <tr>
+         <td>Параметр</td> <td>Описание</td>
+     </tr>
+     <tr>
+         <td>id</td> <td>Id игры в базе данных</td>
+     </tr>
+     <tr>
+         <td>name</td> <td>Название игры</td>
+     </tr>
+     <tr>
+         <td>gameStudio</td> <td>Название студии разработчика</td>
+     </tr>
+     <tr>
+         <td>gameTags</td> <td>Массив Enum жанров игры</td>
+     </tr>
+ </table>
 <br></br>
 
 <h3>5) Изменить информацию об игре в базе данных</h3>
