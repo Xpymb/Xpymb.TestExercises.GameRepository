@@ -20,8 +20,8 @@ namespace Xpymb.TestExercises.GameRepository.Controllers
             _gameInfoService = gameInfoService;
         }
 
-        [HttpGet("get")]
-        public async Task<IActionResult> Get([Required] Guid id)
+        [HttpGet("gameinfo/{id:guid}")]
+        public async Task<IActionResult> Get([Required][FromQuery] Guid id)
         {
             var result = await _gameInfoService.GetAsync(e => e.Id == id);
 
@@ -33,8 +33,8 @@ namespace Xpymb.TestExercises.GameRepository.Controllers
             return Ok(result);
         }
         
-        [HttpGet("get-by-game-tag")]
-        public async Task<IActionResult> GetByGameTags([Required] GameTagType gameTag)
+        [HttpGet("gameinfo/gametag/{gameTag}")]
+        public async Task<IActionResult> GetByGameTags([Required][FromQuery] GameTagType gameTag)
         {
             var result = await _gameInfoService.GetManyAsync(e => e.GameTags.Contains(gameTag.ToString()));
 
@@ -46,7 +46,7 @@ namespace Xpymb.TestExercises.GameRepository.Controllers
             return Ok(result);
         }
         
-        [HttpGet("get-all")]
+        [HttpGet("gameinfo")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _gameInfoService.GetAllAsync();
@@ -59,7 +59,7 @@ namespace Xpymb.TestExercises.GameRepository.Controllers
             return Ok(result);
         }
 
-        [HttpPut("create")]
+        [HttpPost("gameinfo")]
         public async Task<IActionResult> Create([FromBody] CreateGameInfoModel model)
         {
             if (!ModelState.IsValid)
@@ -69,10 +69,10 @@ namespace Xpymb.TestExercises.GameRepository.Controllers
             
             var result = await _gameInfoService.CreateAsync(model);
 
-            return Ok(result);
+            return CreatedAtRoute(new { id = result.Id }, result);
         }
 
-        [HttpPost("update")]
+        [HttpPut("gameinfo")]
         public async Task<IActionResult> Update([FromBody] UpdateGameInfoModel model)
         {
             if (!ModelState.IsValid)
@@ -92,7 +92,7 @@ namespace Xpymb.TestExercises.GameRepository.Controllers
                 return NotFound($"Record with id = \"{ model.Id }\" not found");
             }
             
-            return Ok(result);
+            return NoContent();
         }
 
         [HttpDelete("delete")]
@@ -110,7 +110,7 @@ namespace Xpymb.TestExercises.GameRepository.Controllers
                 return NotFound($"Record with id = \"{ id }\" not found");
             }
             
-            return Ok(result);
+            return NoContent();
         }
     }
 }
