@@ -17,6 +17,8 @@
 - Swagger
 - AutoMapper
 
+RESTful API оформлено с учётом рекомендаций с сайта Microsoft: <code>https://docs.microsoft.com/ru-ru/azure/architecture/best-practices/api-design</code>
+
 <h2>Как запустить?</h2>
 
 Для запуска проекта необходимы следующие модули:
@@ -58,7 +60,7 @@
 
 <h3>1) Получить информацию об игре по id игры</h3>
 
-Адрес: <code>https://localhost:5001/api/GameInfo/get</code>
+Адрес: <code>https://localhost:5001/api/GameInfo/info</code>
 
 
 Тип метода: GET
@@ -75,7 +77,7 @@
 
 Пример запроса:
 
-https://localhost:5001/api/GameInfo/get?id=d86226ac-9551-497b-b2f9-750651b15ab6
+https://localhost:5001/api/GameInfo/info?id=d86226ac-9551-497b-b2f9-750651b15ab6
 
 Пример ответа:
 
@@ -110,7 +112,7 @@ https://localhost:5001/api/GameInfo/get?id=d86226ac-9551-497b-b2f9-750651b15ab6
 
 <h3>2) Получить информацию об играх по определенному жанру</h3>
 
-Адрес: <code>https://localhost:5001/api/GameInfo/get-by-game-tag</code>
+Адрес: <code>https://localhost:5001/api/GameInfo/info/gametag</code>
 
 
 Тип метода: GET
@@ -127,7 +129,7 @@ https://localhost:5001/api/GameInfo/get?id=d86226ac-9551-497b-b2f9-750651b15ab6
 
 Пример запроса:
 
-https://localhost:5001/api/GameInfo/get-by-game-tag?gameTag=1
+https://localhost:5001/api/GameInfo/info/gametag?gameTag=1
 
 Пример ответа:
 
@@ -175,14 +177,14 @@ https://localhost:5001/api/GameInfo/get-by-game-tag?gameTag=1
 
 <h3>3) Получить информацию обо всех играх в базе данных</h3>
 
-Адрес: https://localhost:5001/api/GameInfo/get-all
+Адрес: https://localhost:5001/api/GameInfo/info
 
 
 Тип метода: GET
 
 Пример запроса:
 
-https://localhost:5001/api/GameInfo/get-all
+https://localhost:5001/api/GameInfo/info
 
 Пример ответа:
 
@@ -238,10 +240,10 @@ https://localhost:5001/api/GameInfo/get-all
 
 <h3>4) Создать новую запись с информацией об игре в базе данных</h3>
 
-Адрес: <code>https://localhost:5001/api/GameInfo/create</code>
+Адрес: <code>https://localhost:5001/api/GameInfo/info</code>
 
 
-Тип метода: PUT
+Тип метода: POST
 
 <table>
     <tr>Тело запроса:</tr>
@@ -261,7 +263,7 @@ https://localhost:5001/api/GameInfo/get-all
 
 Пример запроса:
 
-https://localhost:5001/api/GameInfo/create
+https://localhost:5001/api/GameInfo/info
 
 Тело запроса:
 
@@ -272,44 +274,14 @@ https://localhost:5001/api/GameInfo/create
         0
       ]
     }
-
-Пример ответа:
-
-    {
-      "id": "63a87236-dc81-478a-807c-33eb2c30dbcc",
-      "name": "New World",
-      "gameStudio": "Amazon Game Studios",
-      "gameTags": [
-        0
-      ]
-    }
-
-<table>
-    <tr>Параметры ответа:</tr>
-    <tr>
-        <td>Параметр</td> <td>Описание</td>
-    </tr>
-    <tr>
-        <td>id</td> <td>Id игры в базе данных</td>
-    </tr>
-    <tr>
-        <td>name</td> <td>Название игры</td>
-    </tr>
-    <tr>
-        <td>gameStudio</td> <td>Название студии разработчика</td>
-    </tr>
-    <tr>
-        <td>gameTags</td> <td>Массив Enum жанров игры</td>
-    </tr>
-</table>
 <br></br>
 
 <h3>5) Изменить информацию об игре в базе данных</h3>
 
-Адрес: <code>https://localhost:5001/api/GameInfo/update</code>
+Адрес: <code>https://localhost:5001/api/GameInfo/info</code>
 
 
-Тип метода: POST
+Тип метода: PUT
 
 <table>
     <tr>Тело запроса:</tr>
@@ -335,7 +307,7 @@ https://localhost:5001/api/GameInfo/create
 
 Пример запроса:
 
-https://localhost:5001/api/GameInfo/update
+https://localhost:5001/api/GameInfo/info
 
 Тело запроса:
 
@@ -350,38 +322,6 @@ https://localhost:5001/api/GameInfo/update
       ],
       "isActive": true
     }
-
-Пример ответа:
-
-    {
-      "id": "d86226ac-9551-497b-b2f9-750651b15ab6",
-      "name": "Hades",
-      "gameStudio": "Supergiant Games",
-      "gameTags": [
-        0,
-        3,
-        8
-      ]
-    }
-
-<table>
-    <tr>Параметры ответа:</tr>
-    <tr>
-        <td>Параметр</td> <td>Описание</td>
-    </tr>
-    <tr>
-        <td>id</td> <td>Id игры в базе данных</td>
-    </tr>
-    <tr>
-        <td>name</td> <td>Название игры</td>
-    </tr>
-    <tr>
-        <td>gameStudio</td> <td>Название студии разработчика</td>
-    </tr>
-    <tr>
-        <td>gameTags</td> <td>Массив Enum жанров игры</td>
-    </tr>
-</table>
 
 Изменения в базе данных:
 
@@ -413,7 +353,7 @@ https://localhost:5001/api/GameInfo/update
 
 <h3>6) Удалить информацию об игре из базы данных</h3>
 
-Адрес: <code>https://localhost:5001/api/GameInfo/update</code>
+Адрес: <code>https://localhost:5001/api/GameInfo/info</code>
 
 
 Тип метода: DELETE
@@ -430,39 +370,7 @@ https://localhost:5001/api/GameInfo/update
 
 Пример запроса:
 
-https://localhost:5001/api/GameInfo/delete?id=aa67d796-9278-4a6e-b2b9-707c434ca2d9
-
-Пример ответа:
-
-      {
-        "id": "aa67d796-9278-4a6e-b2b9-707c434ca2d9",
-        "name": "Forza Horizon 5",
-        "gameStudio": "Xbox Game Studios",
-        "gameTags": [
-          0,
-          1,
-          2
-        ]
-      }
-
-<table>
-    <tr>Параметры ответа:</tr>
-    <tr>
-        <td>Параметр</td> <td>Описание</td>
-    </tr>
-    <tr>
-        <td>id</td> <td>Id игры в базе данных</td>
-    </tr>
-    <tr>
-        <td>name</td> <td>Название игры</td>
-    </tr>
-    <tr>
-        <td>gameStudio</td> <td>Название студии разработчика</td>
-    </tr>
-    <tr>
-        <td>gameTags</td> <td>Массив Enum жанров игры</td>
-    </tr>
-</table>
+https://localhost:5001/api/GameInfo/info?id=aa67d796-9278-4a6e-b2b9-707c434ca2d9
 
 <h2>Schemas</h2>
 
